@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion';
+import SmoothScroll from './components/SmoothScroll';
 import { Github, Linkedin, Instagram, Mail, ExternalLink, ChevronRight, Menu, X, ArrowUpRight, Code2, Cpu, Globe, Rocket, Moon, Sun } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -154,14 +155,14 @@ const Navbar = () => {
         scrolled ? "bg-obsidian/80 backdrop-blur-xl border-b border-white/5 py-4" : "bg-transparent"
       )}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-xl font-display font-bold tracking-tighter"
           >
             MANVANTH<span className="text-accent">.</span>
           </motion.div>
-          
+
           <div className="hidden md:flex items-center gap-8 text-[10px] font-bold tracking-[0.2em] uppercase">
             {navLinks.map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-accent transition-colors">
@@ -174,7 +175,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(true)}
               className="md:hidden p-2 glass rounded-full hover:text-accent transition-colors"
             >
@@ -198,7 +199,7 @@ const Navbar = () => {
               <span className="text-xl font-display font-bold tracking-tighter">
                 MANVANTH<span className="text-accent">.</span>
               </span>
-              <button 
+              <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 glass rounded-full"
               >
@@ -260,11 +261,11 @@ const Hero = () => {
       {/* Background Motion Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Cinematic Grid */}
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '100px 100px' }} />
-        
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '100px 100px' }} />
+
         {/* Moving Scanner Line */}
-        <motion.div 
+        <motion.div
           animate={{ y: ["0%", "100%"] }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10 blur-sm"
@@ -309,11 +310,11 @@ const Hero = () => {
             >
               <div className="flex gap-1">
                 {[...Array(3)].map((_, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     animate={{ scaleY: [1, 1.5, 1] }}
                     transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
-                    className="w-[2px] h-3 bg-accent" 
+                    className="w-[2px] h-3 bg-accent"
                   />
                 ))}
               </div>
@@ -346,7 +347,7 @@ const Hero = () => {
               <p className="text-chrome/40 text-base md:text-lg font-light leading-relaxed mb-10">
                 Manvanth Gowda M is a Computer Science Engineer crafting high-performance digital environments where technical precision meets creative motion.
               </p>
-              
+
               <Magnetic>
                 <a href="#projects" className="group inline-flex items-center gap-6 py-5 px-10 glass rounded-full hover:bg-white hover:text-obsidian transition-all duration-700 active:scale-95">
                   <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Explore System</span>
@@ -359,7 +360,7 @@ const Hero = () => {
 
             <div className="hidden lg:block w-[1px] h-40 bg-white/5" />
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
@@ -426,23 +427,23 @@ const About = () => {
             </p>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           style={{ scale, rotate }}
           className="relative aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden glass group"
         >
-          <motion.img 
+          <motion.img
             initial={{ scale: 1.2, filter: "grayscale(100%)" }}
             whileInView={{ scale: 1, filter: "grayscale(0%)" }}
             transition={{ duration: 1.5, ...cinematicTransition }}
-            src="/assets/manvanth.jpg" 
-            alt="Manvanth Gowda M" 
+            src="/assets/manvanth.jpg"
+            alt="Manvanth Gowda M"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10 opacity-60" />
           <div className="absolute bottom-8 left-8 z-20">
-              <span className="text-4xl font-display font-bold">01</span>
-              <p className="text-xs tracking-[0.3em] uppercase font-bold text-accent">Manvanth Gowda M</p>
+            <span className="text-4xl font-display font-bold">01</span>
+            <p className="text-xs tracking-[0.3em] uppercase font-bold text-accent">Manvanth Gowda M</p>
           </div>
         </motion.div>
       </div>
@@ -461,6 +462,7 @@ const SkillCard = ({ icon: Icon, title, skills, index }) => {
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e) => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -518,7 +520,7 @@ const SkillCard = ({ icon: Icon, title, skills, index }) => {
         <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent/20 group-hover:scale-110 transition-all duration-500">
           <Icon className="w-7 h-7 text-accent" />
         </div>
-        
+
         <h3 className="text-2xl font-display font-bold mb-6 tracking-tight uppercase group-hover:text-accent transition-colors">
           {title}
         </h3>
@@ -549,32 +551,32 @@ const Skills = () => (
         <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight">TECHNICAL SPEC.</h2>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         variants={staggerContainer}
         initial="initial"
         whileInView="whileInView"
         viewport={{ once: true }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        <SkillCard 
+        <SkillCard
           index={0}
           icon={Code2}
           title="Languages"
           skills={["JavaScript", "TypeScript", "Python", "Java", "C++"]}
         />
-        <SkillCard 
+        <SkillCard
           index={1}
           icon={Globe}
           title="Frontend"
           skills={["React", "Next.js", "Tailwind CSS", "Framer Motion", "Three.js"]}
         />
-        <SkillCard 
+        <SkillCard
           index={2}
           icon={Cpu}
           title="Backend"
           skills={["Node.js", "Express", "MongoDB", "PostgreSQL", "Firebase"]}
         />
-        <SkillCard 
+        <SkillCard
           index={3}
           icon={Rocket}
           title="Tools"
@@ -596,6 +598,7 @@ const ProjectCard = ({ project, idx, onClick }) => {
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
 
   const handleMouseMove = (e) => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -659,7 +662,7 @@ const ProjectCard = ({ project, idx, onClick }) => {
             <span className="font-mono text-[8px] tracking-[0.3em] text-accent/40 uppercase">System_Link_v.0{idx + 1}</span>
           </div>
         </div>
-        
+
         <div style={{ transform: "translateZ(60px)" }} className="relative z-10">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-[1px] w-8 bg-accent/30 group-hover:w-16 transition-all duration-700" />
@@ -732,11 +735,11 @@ const Projects = () => {
         {projects.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {projects.map((project, idx) => (
-              <ProjectCard 
-                key={idx} 
-                project={project} 
-                idx={idx} 
-                onClick={() => setSelectedProject(project)} 
+              <ProjectCard
+                key={idx}
+                project={project}
+                idx={idx}
+                onClick={() => setSelectedProject(project)}
               />
             ))}
           </div>
@@ -756,21 +759,21 @@ const Projects = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] flex items-center justify-center p-6 md:p-12"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-obsidian/95 backdrop-blur-2xl" 
+              className="absolute inset-0 bg-obsidian/95 backdrop-blur-2xl"
             />
-            
+
             <motion.div
               layoutId={selectedProject.name}
               className="glass max-w-4xl w-full rounded-[40px] overflow-hidden relative z-10 border border-white/10"
             >
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
-              
-              <button 
+
+              <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-8 right-8 w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-accent hover:text-obsidian transition-all z-20"
               >
@@ -780,7 +783,7 @@ const Projects = () => {
               <div className="p-8 md:p-20 relative overflow-hidden">
                 {/* Modal Ambient Glow */}
                 <div className="absolute -top-24 -left-24 w-64 h-64 bg-accent/10 blur-[100px] rounded-full" />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-10">
                     <div className="w-12 h-[1px] bg-accent" />
@@ -790,12 +793,12 @@ const Projects = () => {
                   <h2 className="text-5xl md:text-8xl font-display font-bold mb-10 tracking-tighter uppercase leading-[0.9]">
                     {selectedProject.name}<span className="text-accent">.</span>
                   </h2>
-                  
+
                   <div className="grid md:grid-cols-[1fr,200px] gap-12 items-start">
                     <p className="text-chrome/70 text-lg md:text-2xl font-light leading-relaxed">
                       {selectedProject.description}
                     </p>
-                    
+
                     <div className="space-y-8 pt-2">
                       <div className="space-y-2">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-accent/50">Technologies</p>
@@ -813,9 +816,9 @@ const Projects = () => {
 
                   <div className="flex flex-wrap gap-6 mt-16">
                     <Magnetic>
-                      <a 
-                        href={selectedProject.link} 
-                        target="_blank" 
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center gap-4 px-10 py-5 bg-accent text-obsidian rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white transition-all duration-500"
                       >
@@ -836,20 +839,20 @@ const Projects = () => {
 const CreativePortfolio = () => (
   <section className="py-32 px-6 md:px-12 overflow-hidden">
     <div className="max-w-7xl mx-auto">
-      <a 
+      <a
         href="https://manvanth.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
         className="block"
       >
-        <motion.div 
+        <motion.div
           {...fadeInUp}
           className="glass p-12 md:p-24 rounded-3xl relative group overflow-hidden cursor-pointer active:scale-[0.98] transition-transform"
         >
           <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:opacity-20 transition-opacity">
             <Globe className="w-48 h-48 md:w-64 md:h-64" />
           </div>
-          
+
           <div className="relative z-10">
             <span className="text-accent font-medium tracking-[0.3em] uppercase text-xs mb-6 block">Extended Work</span>
             <h2 className="text-4xl md:text-7xl font-display font-bold mb-8 tracking-tighter leading-none">
@@ -873,7 +876,7 @@ const Contact = () => (
         <h2 className="text-5xl md:text-8xl font-display font-bold mb-12 tracking-tighter uppercase">
           READY TO <span className="text-accent italic">BUILD</span>?
         </h2>
-        <a 
+        <a
           href="mailto:appumanu3214@gmail.com"
           className="inline-flex items-center gap-4 text-2xl md:text-4xl font-display font-bold text-accent hover:text-white transition-colors group"
         >
@@ -913,34 +916,26 @@ const Contact = () => (
   </section>
 );
 
-const Footer = () => (
-  <footer className="py-12 px-6 md:px-12 border-t border-white/5 bg-obsidian">
-    <div className="max-w-7xl mx-auto flex flex-col justify-between items-center gap-8 md:flex-row text-[10px] font-bold uppercase tracking-[0.3em] text-chrome/30">
-      <p>© 2026 MANVANTH GOWDA M</p>
-      <div className="flex gap-8">
-        <a href="#" className="hover:text-accent transition-colors">Back to top</a>
-        <a href="https://manvanth.vercel.app/" className="hover:text-accent transition-colors">Creative Book</a>
-      </div>
-      <p>ENGINEERING IDEAS INTO REALITY.</p>
-    </div>
-  </footer>
-);
+
 
 export default function App() {
   return (
-    <div className="relative selection:bg-accent selection:text-obsidian">
-      <CustomCursor />
-      <Noise />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <CreativePortfolio />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <SmoothScroll>
+      <div className="bg-obsidian min-h-screen text-white selection:bg-accent/30 selection:text-white">
+        <CustomCursor />
+        <Noise />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        <footer className="py-8 text-center text-chrome/30 text-[10px] font-mono tracking-widest uppercase border-t border-white/5">
+          <p>© 2024 Manvanth Gowda M • System_Online</p>
+        </footer>
+      </div>
+    </SmoothScroll>
   );
-}
+};
