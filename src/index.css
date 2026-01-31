@@ -18,7 +18,7 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-obsidian text-chrome overflow-x-hidden antialiased transition-colors duration-500;
   }
@@ -50,7 +50,13 @@
 }
 
 .glass {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  @apply bg-black/90 border border-white/10;
+}
+
+@media (min-width: 768px) {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg;
+  }
 }
 
 .outline-text {

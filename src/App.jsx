@@ -124,14 +124,24 @@ const CustomCursor = () => {
   );
 };
 
-const Noise = () => (
-  <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden translate-z-0">
-    <div
-      className="absolute inset-[-200%] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] animate-grain will-change-transform"
-      style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-    />
-  </div>
-);
+const Noise = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  if (isMobile) return null;
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden translate-z-0">
+      <div
+        className="absolute inset-[-200%] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] animate-grain will-change-transform"
+        style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+      />
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
