@@ -943,6 +943,7 @@ export default function App() {
           <About />
           <Skills />
           <Projects />
+          <CreativePortfolio />
           <Contact />
         </main>
         <footer className="py-8 text-center text-chrome/30 text-[10px] font-mono tracking-widest uppercase border-t border-white/5">
