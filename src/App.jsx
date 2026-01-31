@@ -125,8 +125,11 @@ const CustomCursor = () => {
 };
 
 const Noise = () => (
-  <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
-    <div className="absolute inset-[-200%] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] animate-grain" />
+  <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden translate-z-0">
+    <div
+      className="absolute inset-[-200%] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] animate-grain will-change-transform"
+      style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+    />
   </div>
 );
 
@@ -323,7 +326,7 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            <h1 className="flex flex-col text-[13vw] md:text-[9vw] lg:text-[7.5vw] font-display font-bold leading-[0.85] tracking-tighter uppercase">
+            <h1 className="flex flex-col text-[13vw] md:text-[9vw] lg:text-[7.5vw] font-display font-bold leading-[0.85] tracking-tighter uppercase will-change-transform">
               <span className="relative overflow-hidden inline-block h-[1.1em]">
                 <CharReveal text="ARCHITECTING" className="text-white/20 outline-text" />
               </span>

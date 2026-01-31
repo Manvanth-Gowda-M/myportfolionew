@@ -12,8 +12,10 @@ const SmoothScroll = ({ children }) => {
             gestureDirection: 'vertical',
             smooth: true,
             mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
+            smoothTouch: true, // Force soft scroll on touch
+            touchMultiplier: 1.5, // Natural feel multiplier
+            syncTouch: true, // Sync with refresh rate for 120fps
+            syncTouchLerp: 0.1, // Damping for syncTouch
         });
 
         lenisRef.current = lenis;
