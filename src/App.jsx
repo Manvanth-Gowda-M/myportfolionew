@@ -358,7 +358,7 @@ const Hero = () => {
               className="max-w-md"
             >
               <p className="text-chrome/40 text-base md:text-lg font-light leading-relaxed mb-10">
-                Manvanth Gowda M is a Computer Science Engineer crafting high-performance digital environments where technical precision meets creative motion.
+                Manvanth Gowda M is a Computer Science Engineer and <span className="text-white font-medium">Co-Founder & Full-Stack AI Developer at <a href="https://www.quilonix.in" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline transition-colors">Quilonix</a></span>, crafting high-performance digital environments where technical precision meets creative motion.
               </p>
 
               <Magnetic>
@@ -430,7 +430,7 @@ const About = () => {
           </h2>
           <div className="space-y-6 text-chrome/70 text-lg font-light leading-relaxed">
             <p>
-              I am <span className="text-white font-medium">Manvanth Gowda M</span>, a passionate Computer Science Engineering student with a deep interest in the intersection of technology and creativity.
+              I am <span className="text-white font-medium">Manvanth Gowda M</span>, a passionate Computer Science Engineering student and <span className="text-white font-medium">Co-Founder & Full-Stack AI Developer at <a href="https://www.quilonix.in" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline transition-colors">Quilonix</a></span>, with a deep interest in the intersection of technology and creativity.
             </p>
             <p>
               My journey is driven by a curiosity to understand how things work and a desire to build tools that solve real-world problems. Whether it's crafting high-performance backends or designing fluid, interactive interfaces, I aim for excellence in every line of code.
@@ -901,7 +901,7 @@ const Contact = () => (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-32 pt-12 border-t border-white/5">
         {[
           { icon: Github, label: 'GitHub', href: 'https://github.com/Manvanth-Gowda-M' },
-          { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/manvanth-gowda-m-50288039b' },
+          { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/manvnath-gowda-m' },
           { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/manvanth.gowda.m/' },
           { icon: Mail, label: 'Email', href: 'mailto:appumanu3214@gmail.com' }
         ].map((item, idx) => (
